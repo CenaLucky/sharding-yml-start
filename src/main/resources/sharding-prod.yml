@@ -1,0 +1,24 @@
+dataSources:
+  sharding0: !!com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.0.1.164:3306/sharding_0?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+  sharding1: !!com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.0.1.164:3306/sharding_1?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: root
+    
+shardingRule:
+  tables:
+    t_user:
+      actualDataNodes: sharding${0..1}.t_user_${0..2}
+      databaseStrategy:
+        inline:
+          shardingColumn: id
+          algorithmExpression: sharding${id % 2}
+      tableStrategy:
+        inline:
+          shardingColumn: id
+          algorithmExpression: t_user_${id % 3}

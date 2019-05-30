@@ -1,0 +1,7 @@
+server:
+  port: 8082
+logging:
+  path: /tmp
+  file: prod_logging.log
+  level:
+    root: info

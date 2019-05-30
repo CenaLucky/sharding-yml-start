@@ -1,0 +1,7 @@
+server:
+  port: 8081
+logging:
+  path: D:\work\sharding
+  file: dev_logging.log
+  level:
+    root: warn
